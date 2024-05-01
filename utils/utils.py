@@ -134,7 +134,7 @@ def get_dataset(args, mode):
         dataset = HO3D(dataset_root=args.HO3D_root, obj_model_root=args.obj_model_root,
                     train_label_root="ho3d-process", mode=mode, inp_res=args.inp_res)
     elif args.dataset_name=='POV_SURGERY':
-        from dataset.pov_surgery import POVSURGERY
+        from dataset.pov_surgery.pov_surgery import POVSURGERY
         dataset = POVSURGERY(transforms.ToTensor(), "validation")
     else:
         pass
