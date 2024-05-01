@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-from config import cfg
+# from config import cfg
 
 def cam2pixel(cam_coord, f, c):
     x = cam_coord[:,0] / cam_coord[:,2] * f[0] + c[0]

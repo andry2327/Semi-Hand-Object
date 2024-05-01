@@ -11,10 +11,10 @@ import math
 import copy
 # from pycocotools.coco import COCO
 # from config import cfg
-from preprocessing import load_img, get_bbox, process_bbox, generate_patch_image, augmentation
-from transforms import world2cam, cam2pixel, pixel2cam, rigid_align, transform_joint_to_other_db
-from vis import vis_keypoints, vis_mesh, save_obj, vis_keypoints_with_skeleton
-from mano import MANO
+from pov_surgery.preprocessing import load_img, get_bbox, process_bbox, generate_patch_image, augmentation
+from pov_surgery.transforms import world2cam, cam2pixel, pixel2cam, rigid_align, transform_joint_to_other_db
+from pov_surgery.vis import vis_keypoints, vis_mesh, save_obj, vis_keypoints_with_skeleton
+from pov_surgery.mano import MANO
 import pickle
 import sys
 sys.path.append('/content/Semi-Hand-Object/')

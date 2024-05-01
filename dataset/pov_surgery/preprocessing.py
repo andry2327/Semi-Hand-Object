@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import random
-from config import cfg
+# from config import cfg
 import math
 import torchvision
 
