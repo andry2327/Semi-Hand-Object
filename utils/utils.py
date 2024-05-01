@@ -128,9 +128,14 @@ def save_checkpoint(state, checkpoint="checkpoint", filename="checkpoint.pth.tar
 
 
 def get_dataset(args, mode):
-    from dataset.ho3d import HO3D
-    dataset = HO3D(dataset_root=args.HO3D_root, obj_model_root=args.obj_model_root,
-                   train_label_root="ho3d-process", mode=mode, inp_res=args.inp_res)
+    if args.dataset_name=='HO3D':
+        from dataset.ho3d import HO3D
+        dataset = HO3D(dataset_root=args.HO3D_root, obj_model_root=args.obj_model_root,
+                    train_label_root="ho3d-process", mode=mode, inp_res=args.inp_res)
+    elif args.dataset_name=='POV_SURGERY':
+        pass #TODO
+    else:
+        pass
     return dataset
 
 

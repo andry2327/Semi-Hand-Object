@@ -1,6 +1,7 @@
 def add_opts(parser):
     # options for dataset
-    parser.add_argument("--HO3D_root", type=str, help="HO3D dataset root", required=True)
+    parser.add_argument("--dataset_name", type=str, help="dataset name (HO3D, POV_SURGERY)", required=True)
+    parser.add_argument("--dataset_path", type=str, help="dataset path root", required=True)
     parser.add_argument("--mano_root", default="assets/mano_models", type=str, help="mano root")
     parser.add_argument("--obj_model_root", default="assets/object_models", type=str, help="object model root")
     parser.add_argument("--inp_res", default=512, type=int, help="input image size")
