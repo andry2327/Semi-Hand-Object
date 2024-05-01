@@ -19,14 +19,14 @@ def load_img(path, order='RGB'):
 def get_bbox(joint_img, joint_valid, expansion_factor=1.0):
 
     x_img, y_img = joint_img[:,0], joint_img[:,1]
-    x_img = x_img[joint_valid==1]; y_img = y_img[joint_valid==1];
-    xmin = min(x_img); ymin = min(y_img); xmax = max(x_img); ymax = max(y_img);
+    x_img = x_img[joint_valid==1]; y_img = y_img[joint_valid==1]
+    xmin = min(x_img); ymin = min(y_img); xmax = max(x_img); ymax = max(y_img)
 
-    x_center = (xmin+xmax)/2.; width = (xmax-xmin)*expansion_factor;
+    x_center = (xmin+xmax)/2.; width = (xmax-xmin)*expansion_factor
     xmin = x_center - 0.5*width
     xmax = x_center + 0.5*width
     
-    y_center = (ymin+ymax)/2.; height = (ymax-ymin)*expansion_factor;
+    y_center = (ymin+ymax)/2.; height = (ymax-ymin)*expansion_factor
     ymin = y_center - 0.5*height
     ymax = y_center + 0.5*height
 
