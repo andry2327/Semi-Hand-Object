@@ -17,8 +17,9 @@ from vis import vis_keypoints, vis_mesh, save_obj, vis_keypoints_with_skeleton
 from mano import MANO
 import pickle
 import sys
-sys.path.append('/content/HandOccNet/data')
-sys.path.append('/content/HandOccNet')
+sys.path.append('/content/Semi-Hand-Object/')
+sys.path.append('/content/Semi-Hand-Object/dataset')
+sys.path.append('/content/Semi-Hand-Object/dataset/pov_surgery')
 import dataset.dataset_util as dataset_util
 
 mano = MANO()
