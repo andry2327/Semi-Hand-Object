@@ -9,7 +9,7 @@ import random
 import json
 import math
 import copy
-from pycocotools.coco import COCO
+# from pycocotools.coco import COCO
 from config import cfg
 from utils.preprocessing import load_img, get_bbox, process_bbox, generate_patch_image, augmentation
 from utils.transforms import world2cam, cam2pixel, pixel2cam, rigid_align, transform_joint_to_other_db
