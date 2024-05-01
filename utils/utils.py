@@ -5,6 +5,7 @@ import time
 import datetime
 import warnings
 import torch
+import torchvision.transforms as transforms
 
 
 def progress_bar(msg=None):
@@ -133,7 +134,8 @@ def get_dataset(args, mode):
         dataset = HO3D(dataset_root=args.HO3D_root, obj_model_root=args.obj_model_root,
                     train_label_root="ho3d-process", mode=mode, inp_res=args.inp_res)
     elif args.dataset_name=='POV_SURGERY':
-        pass #TODO
+        from dataset.pov_surgery import POVSURGERY
+        dataset = POVSURGERY(transforms.ToTensor(), "validation")
     else:
         pass
     return dataset
