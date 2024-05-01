@@ -10,6 +10,11 @@ from utils.utils import Monitor, get_dataset, get_network, print_args, save_args
 from utils.epoch import single_epoch
 from utils.options import add_opts
 
+import sys
+sys.path.append('/content/Semi-Hand-Object/')
+sys.path.append('/content/Semi-Hand-Object/dataset')
+sys.path.append('/content/Semi-Hand-Object/dataset/pov_surgery')
+
 
 def main(args):
     # Initialize randoms seeds
