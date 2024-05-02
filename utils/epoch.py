@@ -88,9 +88,6 @@ def single_epoch(loader, model, args, epoch=None, optimizer=None, save_path="che
             end = time.time()
 
         else:
-            print() # DEBUG
-            print(type(sample)) # DEBUG
-            print(sample) # DEBUG
             if args.dataset_name=='HO3D':
                 if use_cuda and torch.cuda.is_available():
                     imgs = sample["img"].float().cuda()
@@ -154,13 +151,17 @@ def single_epoch(loader, model, args, epoch=None, optimizer=None, save_path="che
                     verts_pred_list.append(verts)
 
             # object predictions and evaluation(online)
-            cam_intr = sample["cam_intr"].numpy()
-            obj_pose = sample['obj_pose'].numpy()
-            obj_cls = sample['obj_cls']
-            obj_bbox3d = sample['obj_bbox3d'].numpy()
-            REP_res_dict, ADD_res_dict = eval_batch_obj(preds_obj, bbox_obj,
-                                                        obj_pose, mesh_dict, obj_bbox3d, obj_cls,
-                                                        cam_intr, REP_res_dict, ADD_res_dict)
+            if args.dataset_name == 'HO3D'
+                cam_intr = sample["cam_intr"].numpy()
+                obj_pose = sample['obj_pose'].numpy()
+                obj_cls = sample['obj_cls']
+                obj_bbox3d = sample['obj_bbox3d'].numpy()
+                REP_res_dict, ADD_res_dict = eval_batch_obj(preds_obj, bbox_obj,
+                                                            obj_pose, mesh_dict, obj_bbox3d, obj_cls,
+                                                            cam_intr, REP_res_dict, ADD_res_dict)
+            else:
+                pass
+            
             # measure elapsed time
             time_meters.add_loss_value("batch_time", time.time() - end)
 

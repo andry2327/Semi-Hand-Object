@@ -136,12 +136,7 @@ def get_dataset(args, mode):
     elif args.dataset_name=='POV_SURGERY':
         from dataset.pov_surgery.pov_surgery import POVSURGERY
         # converting 'mode' name to pov_surgery convention
-        if mode == 'evaluation': 
-            mode_ps = 'validation' 
-        else: 
-            # mode_ps = pass
-            pass
-        print('✅ WORKING') # DEBUG
+        mode_ps = 'validation' if mode == 'evaluation' else None
         dataset = POVSURGERY(transforms.ToTensor(), mode_ps, obj_model_root=args.obj_model_root)
     else:
         # use for other dataset extentions
