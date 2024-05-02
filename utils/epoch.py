@@ -98,6 +98,9 @@ def single_epoch(loader, model, epoch=None, optimizer=None, save_path="checkpoin
                     root_joints = None
 
             else:
+                print() # DEBUG
+                print(type(sample)) # DEBUG
+                print(sample) # DEBUG
                 imgs = sample["img"].float()
                 bbox_hand = sample["bbox_hand"].float()
                 bbox_obj = sample["bbox_obj"].float()
