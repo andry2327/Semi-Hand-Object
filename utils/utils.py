@@ -141,7 +141,7 @@ def get_dataset(args, mode):
         else: 
             # mode_ps = pass
             pass
-        print('✅ WORKING')
+        print('✅ WORKING') # DEBUG
         dataset = POVSURGERY(transforms.ToTensor(), mode_ps, obj_model_root=args.obj_model_root)
     else:
         # use for other dataset extentions
