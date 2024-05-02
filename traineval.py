@@ -72,7 +72,7 @@ def main(args):
         # Evaluate on validation set
         if args.evaluate or (epoch + 1) % args.test_freq == 0:
             with torch.no_grad():
-                single_epoch(loader=val_loader, model=model, epoch=epoch if not args.evaluate else None,
+                single_epoch(loader=val_loader, model=model, args=args, epoch=epoch if not args.evaluate else None,
                              optimizer=None, save_path=args.host_folder,
                              train=False, save_results=args.save_results, use_cuda=args.use_cuda,
                              indices_order=val_dat.jointsMapSimpleToMano if hasattr(val_dat, "jointsMapSimpleToMano") else None)

@@ -7,7 +7,7 @@ from dataset.ho3d_util import filter_test_object, get_unseen_test_object
 from utils.metric import eval_object_pose, eval_batch_obj
 
 
-def single_epoch(loader, model, epoch=None, optimizer=None, save_path="checkpoints",
+def single_epoch(loader, model, args, epoch=None, optimizer=None, save_path="checkpoints",
                  train=True, save_results=False, indices_order=None, use_cuda=False):
 
     time_meters = AverageMeters()
@@ -88,26 +88,56 @@ def single_epoch(loader, model, epoch=None, optimizer=None, save_path="checkpoin
             end = time.time()
 
         else:
-            if use_cuda and torch.cuda.is_available():
-                imgs = sample["img"].float().cuda()
-                bbox_hand = sample["bbox_hand"].float().cuda()
-                bbox_obj = sample["bbox_obj"].float().cuda()
-                if "root_joint" in sample:
-                    root_joints = sample["root_joint"].float().cuda()
-                else:
-                    root_joints = None
+            print() # DEBUG
+            print(type(sample)) # DEBUG
+            print(sample) # DEBUG
+            if args.dataset_name=='HO3D':
+                if use_cuda and torch.cuda.is_available():
+                    imgs = sample["img"].float().cuda()
+                    bbox_hand = sample["bbox_hand"].float().cuda()
+                    bbox_obj = sample["bbox_obj"].float().cuda()
+                    if "root_joint" in sample:
+                        root_joints = sample["root_joint"].float().cuda()
+                    else:
+                        root_joints = None
 
-            else:
-                print() # DEBUG
-                print(type(sample)) # DEBUG
-                print(sample) # DEBUG
-                imgs = sample["img"].float()
-                bbox_hand = sample["bbox_hand"].float()
-                bbox_obj = sample["bbox_obj"].float()
-                if "root_joint" in sample:
-                    root_joints = sample["root_joint"].float()
                 else:
-                    root_joints = None
+                    imgs = sample["img"].float()
+                    bbox_hand = sample["bbox_hand"].float()
+                    bbox_obj = sample["bbox_obj"].float()
+                    if "root_joint" in sample:
+                        root_joints = sample["root_joint"].float()
+                    elif "root_joint_cam" in sample:
+                        root_joints = sample["root_joint_cam"].float()
+                    else:
+                        root_joints = None
+            elif args.dataset_name=='POV_SURGERY':
+                if use_cuda and torch.cuda.is_available():
+                    imgs = sample["img"].float().cuda()
+                    bbox_hand = sample["bbox_hand"].float().cuda()
+                    bbox_obj = sample["bbox_obj"].float().cuda()
+                    if "root_joint" in sample:
+                        root_joints = sample["root_joint"].float().cuda()
+                    else:
+                        root_joints = None
+
+                else:
+                    imgs = sample[0]["img"].float()
+                    bbox_hand = sample[1]["bbox_hand"].float()
+                    bbox_obj = sample[1]["bbox_obj"].float()
+                    if "root_joint" in sample: # not present in POV-Surgery
+                        root_joints = sample["root_joint"].float()
+                    elif "root_joint_cam" in sample:
+                        root_joints = sample[2]["root_joint_cam"].float()
+                    else:
+                        root_joints = None
+            else:
+                # use for other datasets extention
+                if use_cuda and torch.cuda.is_available():
+                    pass
+                else:
+                    pass
+                pass
 
             # measure data loading time
             time_meters.add_loss_value("data_time", time.time() - end)
