@@ -38,4 +38,4 @@ class MANO(object):
         return  ManoLayer(ncomps=45, center_idx=0, flat_hand_mean=True,
                            side="right", mano_root=MANO_ROOT_PATH, use_pca=False)
     def get_layer(self):
-        return ManoLayer(mano_root=osp.join(cfg.mano_path, 'mano', 'models'), flat_hand_mean=False, use_pca=False, side='right') # load right hand MANO model
+        return ManoLayer(mano_root=MANO_ROOT_PATH, flat_hand_mean=False, use_pca=False, side='right') # load right hand MANO model
