@@ -110,11 +110,13 @@ def single_epoch(loader, model, args, epoch=None, optimizer=None, save_path="che
                         root_joints = None
             elif args.dataset_name=='POV_SURGERY':
                 if use_cuda and torch.cuda.is_available():
-                    imgs = sample["img"].float().cuda()
-                    bbox_hand = sample["bbox_hand"].float().cuda()
-                    bbox_obj = sample["bbox_obj"].float().cuda()
+                    imgs = sample[0]["img"].float().cuda()
+                    bbox_hand = sample[1]["bbox_hand"].float().cuda()
+                    bbox_obj = sample[1]["bbox_obj"].float().cuda()
                     if "root_joint" in sample:
                         root_joints = sample["root_joint"].float().cuda()
+                    elif "root_joint_cam" in sample:
+                        root_joints = sample[2]["root_joint_cam"].float()
                     else:
                         root_joints = None
 
@@ -151,7 +153,7 @@ def single_epoch(loader, model, args, epoch=None, optimizer=None, save_path="che
                     verts_pred_list.append(verts)
 
             # object predictions and evaluation(online)
-            if args.dataset_name == 'HO3D'
+            if args.dataset_name == 'HO3D':
                 cam_intr = sample["cam_intr"].numpy()
                 obj_pose = sample['obj_pose'].numpy()
                 obj_cls = sample['obj_cls']
@@ -161,7 +163,7 @@ def single_epoch(loader, model, args, epoch=None, optimizer=None, save_path="che
                                                             cam_intr, REP_res_dict, ADD_res_dict)
             else:
                 pass
-            
+
             # measure elapsed time
             time_meters.add_loss_value("batch_time", time.time() - end)
 
