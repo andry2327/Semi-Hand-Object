@@ -2,10 +2,10 @@ import numpy as np
 import torch
 import os.path as osp
 import json
-from config import cfg
+# from config import cfg
 
-import sys
-sys.path.insert(0, cfg.mano_path)
+# import sys
+# sys.path.insert(0, cfg.mano_path)
 import manopth
 from manopth.manolayer import ManoLayer
 

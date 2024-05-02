@@ -10,7 +10,7 @@ import json
 import math
 import copy
 # from pycocotools.coco import COCO
-from config import cfg
+# from config import cfg
 import sys
 sys.path.append('/content/Semi-Hand-Object/')
 sys.path.append('/content/Semi-Hand-Object/dataset')
