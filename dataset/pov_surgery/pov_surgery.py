@@ -19,7 +19,7 @@ from preprocessing import load_img, get_bbox, process_bbox, generate_patch_image
 from transforms import world2cam, cam2pixel, pixel2cam, rigid_align, transform_joint_to_other_db
 from vis import vis_keypoints, vis_mesh, save_obj, vis_keypoints_with_skeleton
 sys.path.append("/content/Semi_Hand-Object/dataset")
-from mano import MANO
+from dataset.mano_class import MANO
 import pickle
 import dataset.dataset_util as dataset_util
 
