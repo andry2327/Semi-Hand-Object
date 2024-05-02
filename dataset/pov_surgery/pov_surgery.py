@@ -22,17 +22,21 @@ sys.path.append("/content/Semi_Hand-Object/dataset")
 from dataset.mano_class import MANO
 import pickle
 import dataset.dataset_util as dataset_util
+import dataset.pov_surgery.pov_surgery_util as pov_surgery_util
+
 
 mano = MANO()
 
 ''' ------------- INPUT PARAMETERS ------------- '''
+
 # base path for POV_Surgery_data 
 BASE_DATA_PATH = '/content/gdrive/MyDrive/Thesis/POV_Surgery_data'
+
 ''' -------------------------------------------- '''
 
 
 class POVSURGERY(torch.utils.data.Dataset):
-    def __init__(self, transform, data_split):
+    def __init__(self, transform, data_split, obj_model_root):
         self.transform = transform
         self.data_split = data_split
         # self.root_dir = osp.join('..', 'data', 'HO3D', 'data')
@@ -51,7 +55,10 @@ class POVSURGERY(torch.utils.data.Dataset):
         self.coord_change_mat = np.array([[1., 0., 0.], [0, -1., 0.], [0., 0., -1.]], dtype=np.float32)
         self.inp_res = 256
 
-
+        # object informations
+        self.obj_mesh = pov_surgery_util.load_objects_POV_SURGERY(obj_model_root)
+        self.obj_bbox3d = dataset_util.get_bbox21_3d_from_dict(self.obj_mesh)
+        self.obj_diameters = dataset_util.get_diameter(self.obj_mesh)
 
         if self.data_split == 'train':
             self.mode = 'train'

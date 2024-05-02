@@ -9,7 +9,11 @@ import json
 import manopth 
 from manopth.manolayer import ManoLayer
 
+''' ------------- INPUT PARAMETERS ------------- '''
+
 MANO_ROOT_PATH = '/content/POV_Surgery/data/bodymodel/mano'
+
+''' -------------------------------------------- '''
 
 class MANO(object):
     def __init__(self):
