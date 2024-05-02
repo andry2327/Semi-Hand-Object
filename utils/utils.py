@@ -141,7 +141,7 @@ def get_dataset(args, mode):
         else: 
             # mode_ps = pass
             pass
-        dataset = POVSURGERY(transforms.ToTensor(), mode_ps, obj_model_root=args.object_model_root)
+        dataset = POVSURGERY(transforms.ToTensor(), mode_ps, obj_model_root=args.obj_model_root)
     else:
         pass
     return dataset
