@@ -6,7 +6,7 @@ import json
 
 # import sys
 # sys.path.insert(0, cfg.mano_path)
-import manopth
+import manopth 
 from manopth.manolayer import ManoLayer
 
 MANO_ROOT_PATH = '/content/POV_Surgery/data/bodymodel/mano'
